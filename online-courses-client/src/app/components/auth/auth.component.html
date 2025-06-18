@@ -1,0 +1,56 @@
+<div class="auth-container">
+  <div class="top-left-tabs">
+    <mat-tab-group>
+      <mat-tab label="Login">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+        </form>
+      </mat-tab>
+      <mat-tab label="Register">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role" required>
+              <mat-option value="student">Student</mat-option>
+              <mat-option value="teacher">Teacher</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="accent" type="submit" [disabled]="!registerForm.valid">Register</button>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="welcome-text">
+    <h1>Welcome to Online Courses</h1>
+    <p>Discover a wide range of online courses that will help you advance in your career, learn new skills, or pursue your passions.</p>
+    <p>Whether you're looking for professional development or personal growth, we offer high-quality courses designed to help you succeed.</p>
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li><strong>Expert Instructors:</strong> Learn from professionals with real-world experience.</li>
+      <li><strong>Flexible Learning:</strong> Access courses anytime, anywhere, at your own pace.</li>
+      <li><strong>Certifications:</strong> Earn certificates to boost your resume and showcase your skills.</li>
+    </ul>
+    <h3>Get Started Today!</h3>
+    <p>Sign up now to start learning and unlock your full potential.</p>
+  </div>
+</div>

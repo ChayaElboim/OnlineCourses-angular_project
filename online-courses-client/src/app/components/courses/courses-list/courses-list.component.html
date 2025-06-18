@@ -1,0 +1,53 @@
+<div class="container">
+  <h2 class="page-title">Available Courses</h2>
+
+  @if (loading()) {
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="error-message">{{ errorMessage() }}</div>
+  } @else if (processedCourses().length > 0) {
+    <mat-grid-list cols="3" rowHeight="400px" gutterSize="16px">
+      @for (course of processedCourses(); track course.id) {
+        <mat-grid-tile>
+          <mat-card class="course-card">
+            <mat-card-header>
+              <mat-card-title>{{ course.title }}</mat-card-title>
+              <mat-card-subtitle>Instructor: {{ getTeacherName(course.teacherId) }}</mat-card-subtitle>
+            </mat-card-header>
+            <a [routerLink]="['/courses', course.id]" class="card-image-link">
+              <img mat-card-image src="https://placehold.co/600x400/336699/FFFFFF?text={{course.title}}" alt="Image of {{course.title}}">
+            </a>
+            <mat-card-content>
+              <p>{{ course.description }}</p>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              @if (currentUser() && currentUser()?.role === 'student') {
+                @if (course.isEnrolled) {
+                  <button mat-stroked-button color="warn" (click)="leave(course.id)">
+                    <mat-icon>remove_circle_outline</mat-icon> Leave Course
+                  </button>
+                } @else {
+                  <button mat-flat-button color="primary" (click)="enroll(course.id)">
+                    <mat-icon>add_circle</mat-icon> Enroll
+                  </button>
+                }
+              }
+              @if (currentUser() && currentUser()?.id == course.teacherId) {
+                <button mat-icon-button color="warn" (click)="deleteCourse(course.id)" matTooltip="Delete course permanently">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+              }
+              <button mat-button [routerLink]="['/courses', course.id]">
+                  View Details
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      }
+    </mat-grid-list>
+  } @else {
+    <p class="no-courses">No courses available at the moment.</p>
+  }
+</div>

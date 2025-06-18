@@ -1,0 +1,69 @@
+<div class="container">
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else if (errorMessage()) {
+    <p class="error-message">{{ errorMessage() }}</p>
+  } @else {
+  <div class="add-course-container">
+    <app-page-header 
+      title="Course Management"
+      subtitle="Here you can create, edit, and delete your courses"
+      buttonText="Add Course"
+      buttonIcon="add"
+      (buttonClick)="openCourseDialog()">
+    </app-page-header>
+  </div>
+
+  @if (courses().length > 0) {
+    <table mat-table [dataSource]="courses()" class="mat-elevation-z8 course-table">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Course Name </th>
+        <td mat-cell *matCellDef="let course"> {{course.title}} </td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let course" [matTooltip]="course.description">
+          {{course.description | truncate: 50}}
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let course">
+          @if (deletingCourseId() === course.id) {
+            <mat-spinner [diameter]="24"></mat-spinner>
+          } @else {
+            <ng-container *ngIf="currentUser && course.teacherId === currentUser.id">
+              <button mat-icon-button color="primary" (click)="editCourse(course)" matTooltip="Edit Course">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteCourse(course)" [disabled]="deletingCourseId() === course.id" matTooltip="Delete Course">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" (click)="manageLessons(course.id)" matTooltip="Manage Lessons">
+                <mat-icon>library_books</mat-icon>
+              </button>
+            </ng-container>
+          }
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  } @else {
+      <div class="no-courses-container">
+        <mat-icon>school</mat-icon>
+        <p>You haven't created any courses yet.</p>
+        <p>Click the 'Add Course' button to get started.</p>
+      </div>
+  }
+}
+</div>

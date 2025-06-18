@@ -1,0 +1,71 @@
+.auth-container {
+    background-image: url('/assets/login-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between; /* מפזר את הטאבים והטקסט */
+    align-items: flex-start; /* מיישר את הפריטים למעלה */
+    color: black;
+    padding: 20px; /* מוסיף קצת ריווח כללי */
+    
+  }
+  .top-left-tabs {
+    direction: ltr; /* כדי שהטאבים יהיו משמאל לימין */
+    /* margin-right: auto; - נשאיר את זה כדי לדחוף לשמאל */
+    margin-top: 20px; /* הוספת מרווח מלמעלה */
+  }
+  .top-left-tabs mat-tab-group {
+    /* כאן תוכלי להוסיף סגנונות נוספים לטאבים עצמם */
+  }
+  
+  .welcome-text {
+    text-align: center; /* מיישר את הטקסט לימין */
+    width: 40%;
+    padding: 20px;
+  }
+  
+  .welcome-text h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-text h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-text h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-text ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .welcome-text li {
+    margin-bottom: 5px;
+  }
+  
+  /* סגנונות לטפסים בתוך הטאבים */
+  mat-tab-group form {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    width: 300px; /* התאמת רוחב הטופס */
+    box-sizing: border-box;
+    text-align: right;
+    margin-top: 20px; /* הוספת מרווח מהטאבים */
+  }
+  
+  mat-tab-group mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  mat-tab-group button {
+    width: 100%;
+  }

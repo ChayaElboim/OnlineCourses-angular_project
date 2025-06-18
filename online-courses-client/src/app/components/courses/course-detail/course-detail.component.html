@@ -1,0 +1,42 @@
+<!-- course-detail.component.html -->
+@if (isLoading()) {
+  <p>Loading course details...</p>
+} @else if (errorMessage()) {
+  <div class="error-message">
+    <p>{{ errorMessage() }}</p>
+  </div>
+} @else if (course()) {
+  <div class="course-detail-container">
+    <header>
+      <h1>{{ course()?.title }}</h1>
+      <p class="course-description">{{ course()?.description }}</p>
+      <p>
+        <strong>Taught by:</strong>
+        @if (teacherName()) {
+          {{ teacherName() }}
+        } @else if (course()?.teacherId) {
+          Loading teacher info...
+        } @else {
+          Teacher information not available.
+        }
+      </p>
+    </header>
+
+    <section class="lessons-section">
+      <h2>Lessons</h2>
+      @if (lessons().length > 0) {
+        <ul class="lessons-list">
+          @for (lesson of lessons(); track lesson.id) {
+            <li class="lesson-item">
+              <h3>{{ lesson.title }}</h3>
+              <p>{{ lesson.content }}</p>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p>No lessons available for this course yet.</p>
+      }
+    </section>
+
+  </div> <!-- Closing course-detail-container -->
+}

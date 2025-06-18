@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ data.course ? 'Edit Course' : 'Add New Course' }}</h2>
+<mat-dialog-content [formGroup]="courseForm">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Course Title</mat-label>
+    <input matInput formControlName="title" required>
+    @if (courseForm.get('title')?.hasError('required')) {
+      <mat-error>Course title is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Course Description</mat-label>
+    <textarea matInput formControlName="description" required></textarea>
+    @if (courseForm.get('description')?.hasError('required')) {
+      <mat-error>Course description is required</mat-error>
+    }
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="isSaving()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="courseForm.invalid || isSaving()">
+    @if (isSaving()) {
+      <mat-spinner [diameter]="24"></mat-spinner>
+    } @else {
+      <span>Save</span>
+    }
+  </button>
+</mat-dialog-actions>

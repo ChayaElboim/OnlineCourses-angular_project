@@ -1,0 +1,32 @@
+<form [formGroup]="lessonForm">
+  <h2 mat-dialog-title>{{ isEditMode ? 'עריכת שיעור' : 'הוספת שיעור חדש' }}</h2>
+
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field appearance="outline">
+      <mat-label>כותרת השיעור</mat-label>
+      <input matInput formControlName="title" required>
+      @if (lessonForm.get('title')?.hasError('required')) {
+        <mat-error>כותרת היא שדה חובה.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>תוכן השיעור</mat-label>
+      <textarea matInput formControlName="content" rows="5" required></textarea>
+      @if (lessonForm.get('content')?.hasError('required')) {
+        <mat-error>תוכן הוא שדה חובה.</mat-error>
+      }
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()" [disabled]="isSaving()">ביטול</button>
+    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="lessonForm.invalid || isSaving()">
+      @if (isSaving()) {
+        <mat-spinner [diameter]="24"></mat-spinner>
+      } @else {
+        <span>שמור</span>
+      }
+    </button>
+  </div>
+</form>

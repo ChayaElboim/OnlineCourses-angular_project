@@ -1,0 +1,24 @@
+<mat-toolbar class="navbar-toolbar" color="primary">
+  <div class="navbar-brand">
+    <a [routerLink]="isLoggedIn() ? '/courses' : '/' ">Online Courses</a>
+  </div>
+
+  <div class="navbar-links">
+    <!-- Links for non-logged-in users -->
+    @if (!isLoggedIn()) {
+      <a mat-button routerLink="/login">Login / Register</a>
+    }
+
+    <!-- Links for logged-in users -->
+    @if (isLoggedIn()) {
+      <a mat-button routerLink="/courses">Courses</a>
+      
+      <!-- Link for teachers -->
+      @if (isTeacher()) {
+        <a mat-button routerLink="/teacher/manage-courses">Manage Courses</a>
+      }
+      
+      <button mat-raised-button color="accent" (click)="logout()">Logout</button>
+    }
+  </div>
+</mat-toolbar>

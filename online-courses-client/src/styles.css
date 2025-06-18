@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Custom Snackbar Styles */
+.success-snackbar {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.success-snackbar .mat-mdc-button.mat-mdc-button-base {
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.error-snackbar .mat-mdc-button.mat-mdc-button-base {
+  color: white;
+}
