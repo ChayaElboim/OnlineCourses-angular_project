@@ -1,5 +1,10 @@
 import { Component, OnInit, signal, WritableSignal, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../../../services/courses.service';
 import { UsersService } from '../../../services/users.service'; 
@@ -14,7 +19,15 @@ import { RouterLink } from '@angular/router'; // For routerLink directive
 @Component({
   selector: 'app-course-detail',
   standalone: true,
-  imports: [CommonModule,RouterLink], 
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatIconModule
+  ], 
   templateUrl: './course-detail.component.html',
   styleUrls: ['./course-detail.component.css']
 })

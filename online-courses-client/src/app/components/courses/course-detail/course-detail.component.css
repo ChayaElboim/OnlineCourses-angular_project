@@ -1,0 +1,33 @@
+.course-detail-page {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.course-card {
+  max-width: 800px;
+  width: 100%;
+}
+
+.error-card {
+  max-width: 500px;
+  width: 100%;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.lessons-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.mat-expansion-panel {
+  margin-bottom: 10px;
+}

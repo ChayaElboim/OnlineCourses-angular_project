@@ -13,10 +13,12 @@ export const authReducer = createReducer(
       error: null
     };
   }),
-  on(AuthActions.registerSuccess, (state, { user }) => ({
+  on(AuthActions.registerSuccess, (state, { user, token }) => ({
     ...state,
-    user,
-    isAuthenticated: true
+    isLoggedIn: true,
+    user: user,
+    token: token,
+    error: null
   })),
   on(AuthActions.logout, (state) => ({
     ...state,

@@ -24,7 +24,7 @@ export class AuthService {
         tap(response => {
           console.log('Registration successful', response);
           localStorage.setItem('authToken', response.token);
-          this.store.dispatch(AuthActions.registerSuccess({ user: { id: response.userId, role: response.role } })); // שידור עם מבנה user: { id, role }
+          this.store.dispatch(AuthActions.registerSuccess({ user: { id: response.userId, role: response.role }, token: response.token }));
         }),
         catchError(this.handleError<AuthResponse>('register'))
       );
